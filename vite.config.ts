@@ -60,7 +60,30 @@
     },
     build: {
       target: 'esnext',
-      outDir: 'build',
+      outDir: 'dist',
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom'],
+            'solana-vendor': [
+              '@solana/wallet-adapter-react',
+              '@solana/wallet-adapter-phantom',
+              '@solana/wallet-adapter-backpack',
+              '@solana/wallet-adapter-solflare',
+              '@solana/wallet-adapter-trust',
+              '@solana/wallet-adapter-coinbase',
+              '@solana/web3.js'
+            ],
+            'ui-vendor': [
+              '@radix-ui/react-dialog',
+              '@radix-ui/react-dropdown-menu',
+              '@radix-ui/react-select',
+              '@radix-ui/react-tabs'
+            ],
+          },
+        },
+      },
     },
     server: {
       port: 3000,
